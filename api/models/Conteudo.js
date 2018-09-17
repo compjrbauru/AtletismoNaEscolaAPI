@@ -1,5 +1,5 @@
 /**
- * Quiz/prova.js
+ * Conteudo.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -8,14 +8,12 @@
 module.exports = {
 
   attributes: {
-    questoes: {
-      collection: 'questao',
-      via: 'owner'
+    texto: {
+      type: 'string',
     },
-    conteudo: {
-      collection: 'Conteudo',
-      via: 'owner',
-    },
+    owner: {
+      model: 'prova'
+    }
   },
 
 };
