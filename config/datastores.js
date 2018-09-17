@@ -50,6 +50,13 @@ module.exports.datastores = {
     ***************************************************************************/
     // adapter: 'sails-mysql',
     // url: 'mysql://user:password@host:port/database',
+    mongodb: {
+      adapter: 'sails-mongo',
+      url: 'mongodb://root@localhost:27017',
+      //host: 'localhost',
+      //port: 27017,
+      database: 'FernandoAPI'
+    },
 
   },
 
