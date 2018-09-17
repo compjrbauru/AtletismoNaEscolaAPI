@@ -22,7 +22,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
- 'POST /signup':{ action: 'AccountController' },
+ 'POST /signup':'AccountController.signup',
 
 
 };
