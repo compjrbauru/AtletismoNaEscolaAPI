@@ -34,7 +34,11 @@ module.exports.security = {
   //   allowCredentials: false,
   // },
 
-
+  cors: {
+    allRoutes: true,
+    allowOrigins: ['http://localhost:4200'],
+    allowCredentials: false,
+  }
   /****************************************************************************
   *                                                                           *
   * By default, Sails' built-in CSRF protection is disabled to facilitate     *

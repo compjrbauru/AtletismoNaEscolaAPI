@@ -9,7 +9,7 @@ module.exports = {
 
   attributes: {
     questoes: {
-      collection: 'questao',
+      collection: 'questoes',
       via: 'owner'
     },
     conteudo: {

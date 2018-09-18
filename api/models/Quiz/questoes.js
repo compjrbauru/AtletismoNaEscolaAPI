@@ -9,7 +9,8 @@ module.exports = {
 
   attributes: {
     Alternativas: {
-      type: 'array'
+      type: 'json',
+      columnType: 'array'
     },
     Pergunta: {
       type: 'string',
