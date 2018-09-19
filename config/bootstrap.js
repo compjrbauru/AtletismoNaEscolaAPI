@@ -27,13 +27,13 @@ module.exports.bootstrap = async function(done) {
   // ]);
   // ```
   await Account.createEach([
-    {emailAddress: 'teste@gmail.com', fullName: 'Teste da Silva', password: '123456', escola: 'Escola 1', ano: '5'},
-    {emailAddress: 'guilherme@gmail.com', fullName: 'guilherme da Silva', password: '123456', escola: 'Escola 1', ano: '6'},
-    {emailAddress: 'gustavo@gmail.com', fullName: 'gustavo da Silva', password: '123456', escola: 'Escola 3', ano: '5'},
-    {emailAddress: 'roberto@gmail.com', fullName: 'roberto da Silva', password: '123456', escola: 'Escola 1', ano: '7'},
-    {emailAddress: 'silva@gmail.com', fullName: 'silva da Silva', password: '123456', escola: 'Escola 5', ano: '8'},
-    {emailAddress: 'silvana@gmail.com', fullName: 'silvana da Silva', password: '123456', escola: 'Escola 1', ano: '9'},
-    {emailAddress: 'iodites@gmail.com', fullName: 'iodites da Silva', password: '123456', escola: 'Escola 2', ano: '3'},
+    {emailAddress: 'teste@gmail.com', fullName: 'Teste da Silva', password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 1', ano: '5'},
+    {emailAddress: 'guilherme@gmail.com', fullName: 'guilherme da Silva',password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 1', ano: '6'},
+    {emailAddress: 'gustavo@gmail.com', fullName: 'gustavo da Silva', password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 3', ano: '5'},
+    {emailAddress: 'roberto@gmail.com', fullName: 'roberto da Silva', password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 1', ano: '7'},
+    {emailAddress: 'silva@gmail.com', fullName: 'silva da Silva', password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 5', ano: '8'},
+    {emailAddress: 'silvana@gmail.com', fullName: 'silvana da Silva', password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 1', ano: '9'},
+    {emailAddress: 'iodites@gmail.com', fullName: 'iodites da Silva', password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 2', ano: '3'},
   ]);
 
   await questoes.createEach([

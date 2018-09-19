@@ -22,7 +22,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
- 'POST /signup':'AccountController.signup',
+ 'post /signup':'AccountController.signup',
+ 'post /login': 'LoginController.login'
 
 
 };
