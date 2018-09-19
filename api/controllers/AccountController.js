@@ -14,7 +14,7 @@ module.exports = {
       isEmail: true,
     },
 
-    passwords: {
+    password: {
       required: true,
       type: 'string',
       maxLength: 200,
@@ -74,18 +74,6 @@ module.exports = {
     .intercept({name: 'UsageError'}, 'invalid')
     .fetch();
 
-    // If billing feaures are enabled, save a new customer entry in the Stripe API.
-    // Then persist the Stripe customer id in the database.
-    if (sails.config.custom.enableBillingFeatures) {
-      let stripeCustomerId = await sails.helpers.stripe.saveBillingInfo.with({
-        emailAddress: newEmailAddress
-      });
-      await Account.update(newUserRecord.id).set({
-        stripeCustomerId
-      });
-    }
-    // Since everything went ok, send our 200 response.
-    // console.log(exits);
     return res.ok();
 
   }
