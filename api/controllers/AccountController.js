@@ -65,7 +65,7 @@ module.exports = {
     // (Also use `fetch` to retrieve the new ID so that we can use it below.)
     var newUserRecord = await Account.create(Object.assign({
       emailAddress: newEmailAddress,
-      password: inputs.body.passwords,
+      password: await sails.helpers.passwords.hashPassword(inputs.body.password),
       fullName: inputs.body.fullName,
       escola: inputs.body.escola,
       ano: inputs.body.ano,
