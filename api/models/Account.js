@@ -19,6 +19,7 @@ module.exports = {
       required: true,
       isEmail: true,
       maxLength: 200,
+      unique: true,
     },
 
     password: {
