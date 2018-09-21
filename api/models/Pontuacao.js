@@ -1,5 +1,5 @@
 /**
- * Quiz/questoes.js
+ * Pontuacao.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -8,20 +8,21 @@
 module.exports = {
 
   attributes: {
-    Alternativas: {
-      type: 'json',
-      columnType: 'array'
-    },
-    Pergunta: {
+    pontuacaoQuiz: {
       type: 'string',
+      required: true,
     },
-    RespostaCorreta: {
-      type: 'string',
+    pontuacaoAula: {
+      type: 'number',
+      required: true,
     },
-    owner: {
-      model: 'quiz',
-    }
-  },
+    aluno: {
+      collection: 'Account',
+    },
+    atividade: {
+      collection: 'Account',
+    },
+  }
 
 };
 

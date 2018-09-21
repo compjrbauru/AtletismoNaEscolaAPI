@@ -16,6 +16,10 @@ module.exports = {
       collection: 'Conteudo',
       via: 'owner',
     },
+    ownerAtividade: {
+      model:'Atividade',
+      unique: true
+    }
   },
 
 };

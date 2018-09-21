@@ -1,5 +1,5 @@
 /**
- * Quiz/questoes.js
+ * Atividade.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -8,19 +8,18 @@
 module.exports = {
 
   attributes: {
-    Alternativas: {
-      type: 'json',
-      columnType: 'array'
-    },
-    Pergunta: {
+    titulo: {
       type: 'string',
+      required: true,
     },
-    RespostaCorreta: {
-      type: 'string',
+    quiz: {
+      collection: 'quiz',
+      via: 'ownerAtividade',
     },
-    owner: {
-      model: 'quiz',
-    }
+    provaPratica: {
+      colleciton: 'Provapratica',
+      via: 'ownerProvaPratica',
+    },
   },
 
 };
