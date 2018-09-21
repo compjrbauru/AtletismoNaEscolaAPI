@@ -18,7 +18,6 @@ module.exports = {
     },
     ownerAtividade: {
       model:'Atividade',
-      unique: true
     }
   },
 

@@ -12,7 +12,7 @@ module.exports = {
       type: 'string',
     },
     owner: {
-      model: 'prova'
+      model: 'quiz'
     }
   },
 

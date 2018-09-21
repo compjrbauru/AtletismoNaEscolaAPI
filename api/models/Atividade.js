@@ -17,7 +17,7 @@ module.exports = {
       via: 'ownerAtividade',
     },
     provaPratica: {
-      colleciton: 'Provapratica',
+      collection: 'Provapratica',
       via: 'ownerProvaPratica',
     },
   },

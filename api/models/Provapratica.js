@@ -13,7 +13,6 @@ module.exports = {
     },
     ownerProvaPratica: {
       model: 'Atividade',
-      unique: true
     }
   },
 
