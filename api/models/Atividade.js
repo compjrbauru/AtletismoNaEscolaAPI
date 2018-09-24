@@ -1,5 +1,5 @@
 /**
- * Conteudo.js
+ * Atividade.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -8,12 +8,18 @@
 module.exports = {
 
   attributes: {
-    texto: {
+    titulo: {
       type: 'string',
+      required: true,
     },
-    owner: {
-      model: 'quiz'
-    }
+    quiz: {
+      collection: 'quiz',
+      via: 'ownerAtividade',
+    },
+    provaPratica: {
+      collection: 'Provapratica',
+      via: 'ownerProvaPratica',
+    },
   },
 
 };
