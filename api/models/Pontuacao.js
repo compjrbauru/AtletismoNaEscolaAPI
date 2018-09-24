@@ -17,10 +17,10 @@ module.exports = {
       required: true,
     },
     aluno: {
-      collection: 'Account',
+      model: 'Account',
     },
     atividade: {
-      collection: 'Account',
+      model: 'Account',
     },
   }
 
