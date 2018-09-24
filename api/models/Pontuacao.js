@@ -20,7 +20,7 @@ module.exports = {
       model: 'Account',
     },
     atividade: {
-      model: 'Account',
+      model: 'Atividade',
     },
   }
 
