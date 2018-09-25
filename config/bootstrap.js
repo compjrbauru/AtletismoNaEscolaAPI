@@ -27,56 +27,142 @@ module.exports.bootstrap = async function(done) {
   // ]);
   // ```
   await Account.createEach([
-    {emailAddress: 'teste@gmail.com', fullName: 'Teste da Silva', password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 1', ano: '5'},
-    {emailAddress: 'guilherme@gmail.com', fullName: 'guilherme da Silva',password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 1', ano: '6'},
-    {emailAddress: 'gustavo@gmail.com', fullName: 'gustavo da Silva', password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 3', ano: '5'},
-    {emailAddress: 'roberto@gmail.com', fullName: 'roberto da Silva', password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 1', ano: '7'},
-    {emailAddress: 'silva@gmail.com', fullName: 'silva da Silva', password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 5', ano: '8'},
-    {emailAddress: 'silvana@gmail.com', fullName: 'silvana da Silva', password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 1', ano: '9'},
-    {emailAddress: 'iodites@gmail.com', fullName: 'iodites da Silva', password: await sails.helpers.passwords.hashPassword('abc123'), escola: 'Escola 2', ano: '3'},
+    {
+      emailAddress: 'teste@gmail.com',
+      fullName: 'Teste da Silva',
+      password: await sails.helpers.passwords.hashPassword('abc123'),
+      escola: 'Escola 1',
+      ano: '5'},
+    {
+      emailAddress: 'guilherme@gmail.com',
+      fullName: 'guilherme da Silva',
+      password: await sails.helpers.passwords.hashPassword('abc123'),
+      escola: 'Escola 1',
+      ano: '6'},
+    {
+      emailAddress: 'gustavo@gmail.com',
+      fullName: 'gustavo da Silva',
+      password: await sails.helpers.passwords.hashPassword('abc123'),
+      escola: 'Escola 3',
+      ano: '5'},
+    {
+      emailAddress: 'roberto@gmail.com',
+      fullName: 'roberto da Silva',
+      password: await sails.helpers.passwords.hashPassword('abc123'),
+      escola: 'Escola 1',
+      ano: '7'},
+    {
+      emailAddress: 'silva@gmail.com',
+      fullName: 'silva da Silva',
+      password: await sails.helpers.passwords.hashPassword('abc123'),
+      escola: 'Escola 5',
+      ano: '8'},
+    {
+      emailAddress: 'silvana@gmail.com',
+      fullName: 'silvana da Silva',
+      password: await sails.helpers.passwords.hashPassword('abc123'),
+      escola: 'Escola 1',
+      ano: '9'},
+    {
+      emailAddress: 'iodites@gmail.com',
+      fullName: 'iodites da Silva',
+      password: await sails.helpers.passwords.hashPassword('abc123'),
+      escola: 'Escola 2',
+      ano: '3'},
   ]);
 
   await questoes.createEach([
-    {Pergunta: 'Qual maior corredor de todos os tempos?', RespostaCorreta: '1',
+    {
+      Pergunta: 'Qual maior corredor de todos os tempos?',
+      RespostaCorreta: '1',
       Alternativas: {
         0: 'Bolt',
         1: 'Ninguém',
-      }
+      },
+      id: 1,
     },
-    {Pergunta: 'Qual o record da maratona?', RespostaCorreta: '1',
+    {
+      Pergunta: 'Qual o record da maratona?',
+      RespostaCorreta: '1',
       Alternativas: {
         0: '2h01',
         1: '1h40',
         2: '2h25',
-      }
+      },
+      id: 2,
     },
-    {Pergunta: 'Qual o melhor time do mundo?', RespostaCorreta: '1',
+    {
+      Pergunta: 'Qual o melhor time do mundo?',
+      RespostaCorreta: '1',
       Alternativas: {
         0: 'Corinthians',
         1: 'São Paulo',
         2: 'Santos',
-      }
+      },
+      id: 3,
     },
-    {Pergunta: 'Qual o esporte sem bola?', RespostaCorreta: '3',
+    {
+      Pergunta: 'Qual o esporte sem bola?',
+      RespostaCorreta: '3',
       Alternativas: {
         0: 'Basquete',
         1: 'Futebol',
         2: 'Natação',
-      }
+      },
+      id: 4,
     },
-    {Pergunta: 'Qual o esporte que tem o item mais rápido das olimpiadas?', RespostaCorreta: '1',
+    {
+      Pergunta: 'Qual o esporte que tem o item mais rápido das olimpiadas?',
+      RespostaCorreta: '1',
       Alternativas: {
         0: 'Corrida',
         1: 'Arremesso de peso',
         2: 'Badminton',
-      }
+      },
+      id: 5,
     },
-    {Pergunta: 'Qual a maior prova das olimpiadas?', RespostaCorreta: '1',
+    {
+      Pergunta: 'Qual a maior prova das olimpiadas?',
+      RespostaCorreta: '1',
       Alternativas: {
         0: 'Maratona',
         1: 'Natação',
         2: 'Futebol',
-      }
+      },
+      id: 6,
+    },
+  ]);
+
+  await Conteudo.createEach([
+    {
+      texto: 'texto do conteúdo oshdoiahsaiosfioa jsdpskdoskdosdkskkkkkkkkkkkkkkkkkkkkkkkk kkkkkkkkkkkkkkkkkkkkkkkkkkkk kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk kkkkkkk',
+      owner: 1,
+      id: 1,
+    },
+  ])
+
+  await quiz.createEach([
+    {
+      questoes: [1, 2, 3, 4, 5, 6],
+      conteudo: 1,
+      ownerAtividade: 1,
+      id: 1,
+    },
+  ]);
+
+  await Provapratica.createEach([
+    {
+      titulo: 'Atividade Corrida Rasa',
+      id: 1,
+      ownerProvaPratica: 1
+    },
+  ])
+
+  await Atividade.createEach([
+    {
+      titulo: 'Atividade Corrida Rasa',
+      quiz: 1,
+      provaPratica: 1,
     },
   ]);
 
