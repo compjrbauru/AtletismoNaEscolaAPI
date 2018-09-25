@@ -133,10 +133,11 @@ module.exports.bootstrap = async function(done) {
     },
   ]);
 
-  await conteudo.createEach([
+  await Conteudo.createEach([
     {
       texto: 'texto do conteúdo oshdoiahsaiosfioa jsdpskdoskdosdkskkkkkkkkkkkkkkkkkkkkkkkk kkkkkkkkkkkkkkkkkkkkkkkkkkkk kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk kkkkkkk',
       owner: 1,
+      id: 1,
     },
   ])
 
@@ -149,7 +150,7 @@ module.exports.bootstrap = async function(done) {
     },
   ]);
 
-  await ProvaPratica.createEach([
+  await Provapratica.createEach([
     {
       titulo: 'Atividade Corrida Rasa',
       id: 1,
