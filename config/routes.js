@@ -23,7 +23,8 @@ module.exports.routes = {
   ***************************************************************************/
 
  'post /signup':'AccountController.signup',
- 'post /login': 'LoginController.login'
+ 'post /login': 'LoginController.login',
+ 'get /todas-atividades': 'AtividadeController.atividadeTotal',
 
 
 };
