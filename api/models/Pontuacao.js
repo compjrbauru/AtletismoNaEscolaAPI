@@ -9,7 +9,7 @@ module.exports = {
 
   attributes: {
     pontuacaoQuiz: {
-      type: 'string',
+      type: 'number',
       required: true,
     },
     pontuacaoAula: {
