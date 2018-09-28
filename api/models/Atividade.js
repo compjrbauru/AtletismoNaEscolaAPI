@@ -13,7 +13,7 @@ module.exports = {
       required: true,
     },
     quiz: {
-      collection: 'quiz',
+      collection: 'Quiz',
       via: 'ownerAtividade',
     },
     provaPratica: {
