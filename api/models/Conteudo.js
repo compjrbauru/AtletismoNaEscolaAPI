@@ -12,9 +12,14 @@ module.exports = {
       type: 'string',
     },
     owner: {
-      model: 'quiz'
+      model: 'Quiz',
+    },
+    titulo: {
+      type: 'string',
+      required: true,
+      unique: true,
     }
   },
-
+  
 };
 

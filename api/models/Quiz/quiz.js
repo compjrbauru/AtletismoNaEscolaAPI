@@ -9,7 +9,7 @@ module.exports = {
 
   attributes: {
     questoes: {
-      collection: 'questoes',
+      collection: 'Questoes',
       via: 'owner'
     },
     conteudo: {
@@ -17,7 +17,12 @@ module.exports = {
       via: 'owner',
     },
     ownerAtividade: {
-      model:'Atividade',
+      model: 'Atividade',
+    },
+    titulo: {
+      type: 'string',
+      required: true,
+      unique: true,
     }
   },
 
