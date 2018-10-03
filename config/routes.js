@@ -26,5 +26,5 @@ module.exports.routes = {
  'post /login': 'LoginController.login',
  'get /todas-atividades': 'AtividadeController.atividadeTotal',
  'get /quizes-livres': 'QuizController.QuizesLivresConteudo',
-
+ 'post /pontuacao': 'PontuacaoController.verifyCreatePontuacao',
 };

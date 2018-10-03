@@ -10,17 +10,17 @@ module.exports = {
   attributes: {
     pontuacaoQuiz: {
       type: 'number',
-      required: true,
     },
     pontuacaoAula: {
       type: 'number',
-      required: true,
     },
     aluno: {
       model: 'Account',
+      required: true,
     },
     atividade: {
       model: 'Atividade',
+      required: true,
     },
   }
 
