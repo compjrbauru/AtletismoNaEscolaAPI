@@ -195,7 +195,7 @@ module.exports.bootstrap = async function(done) {
       titulo: 'CONTEUDO 5'
     },
     {
-      texto: 'TEXTO CONTEUDO 5',
+      texto: 'TEXTO CONTEUDO SEM PROVA 2',
       id: 6,
       titulo: 'CONTEUDO SEM PROVA 2 (TESTE)'
     },
@@ -310,7 +310,7 @@ module.exports.bootstrap = async function(done) {
     {
       id: 5,
       titulo: 'Atividade 5 - Sem Pontuacoes (TESTE)',
-      quiz: 5,
+      quiz: 8,
       provaPratica: 5,
     },
   ]);
