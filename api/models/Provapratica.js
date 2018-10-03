@@ -9,10 +9,12 @@ module.exports = {
 
   attributes: {
     titulo: {
-      type: 'string'
+      type: 'string',
+      required: true,
     },
     ownerProvaPratica: {
       model: 'Atividade',
+      required: true,
     }
   },
 

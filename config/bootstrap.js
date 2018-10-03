@@ -76,6 +76,15 @@ module.exports.bootstrap = async function(done) {
       password: await sails.helpers.passwords.hashPassword('abc123'),
       escola: 'Escola 2',
       ano: '3'},
+    {
+      id: 8,
+      emailAddress: 'superadmin@gmail.com',
+      fullName: 'SUPER ADMIN TEST',
+      password: await sails.helpers.passwords.hashPassword('superadmin'),
+      escola: 'Escola 2',
+      ano: '3',
+      isSuperAdmin: true,
+    },
   ]);
 
   var q = [];
@@ -183,7 +192,7 @@ module.exports.bootstrap = async function(done) {
     {
       texto: 'TEXTO CONTEUDO 5',
       id: 5,
-      titulo: 'CONTEUDO SEM PROVA 1 (TESTE)'
+      titulo: 'CONTEUDO 5'
     },
     {
       texto: 'TEXTO CONTEUDO 5',
@@ -236,6 +245,13 @@ module.exports.bootstrap = async function(done) {
       id: 7,
       titulo: 'Quiz Corrida SEM CONTEUDO 3 (TESTE)',
     },
+    {
+      questoes: [15, 16, 17, 18],
+      conteudo: 5,
+      ownerAtividade: 5,
+      id: 8,
+      titulo: 'Quiz para atividade 5',
+    },
   ]);
 
   await Provapratica.createEach([
@@ -258,6 +274,11 @@ module.exports.bootstrap = async function(done) {
       titulo: 'Aula Pratica 4',
       id: 4,
       ownerProvaPratica: 4
+    },
+    {
+      titulo: 'Aula Pratica 5',
+      id: 5,
+      ownerProvaPratica: 5
     },
   ])
 
@@ -286,14 +307,19 @@ module.exports.bootstrap = async function(done) {
       quiz: 4,
       provaPratica: 4,
     },
+    {
+      id: 5,
+      titulo: 'Atividade 5 - Sem Pontuacoes (TESTE)',
+      quiz: 5,
+      provaPratica: 5,
+    },
   ]);
 
 
   let p = [];
   let numalunos = await Account.count();
-  let numatividades =  await Atividade.count();
   for(let i=1; i<=numalunos; i++){
-    for(let j=1; j<=numatividades; j++){ // Cria uma pontuacao de cada atividade para cada aluno
+    for(let j=1; j<=4; j++){ // Cria uma pontuacao de cada atividade para cada aluno
       p.push({  
         pontuacaoQuiz: Math.floor(Math.random() * 90) + 30, // Valor random 
         pontuacaoAula: Math.floor(Math.random() * 120) + 70,
