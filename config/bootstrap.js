@@ -83,7 +83,25 @@ module.exports.bootstrap = async function(done) {
       password: await sails.helpers.passwords.hashPassword('superadmin'),
       escola: 'Escola 2',
       ano: '3',
-      isSuperAdmin: true,
+      role: 'superadmin',
+    },
+    {
+      id: 9,
+      emailAddress: 'professor@gmail.com',
+      fullName: 'PROFESSOR TEST',
+      password: await sails.helpers.passwords.hashPassword('professor'),
+      escola: 'Escola 2',
+      ano: '3',
+      role: 'professor',
+    },
+    {
+      id: 10,
+      emailAddress: 'diretor@gmail.com',
+      fullName: 'DIRETOR TEST',
+      password: await sails.helpers.passwords.hashPassword('diretor'),
+      escola: 'Escola 2',
+      ano: '3',
+      role: 'diretor',
     },
   ]);
 
