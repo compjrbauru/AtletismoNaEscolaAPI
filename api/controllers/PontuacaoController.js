@@ -13,9 +13,48 @@ module.exports = {
             atividade: req.body.atividade
         });
         if (pontuacoes.length > 0)
-            return res.badRequest('Pontuação já existe!');
+            return res.badRequest('PONTUAÇÃO JÁ EXISTE!');
+        var aluno = await Account.findOne({
+            id: req.body.aluno,
+        });
+        var newTotal = aluno.totalpontos + req.body.pontuacaoAula;
         await Pontuacao.create(req.body);
+        await Account.update({id: req.body.aluno}).set({totalpontos: newTotal});
+        
         return res.status(200).json('ok');
+    },
+
+    pontuacaoAluno: async function (req, res) { // Retorna todas as pontuacoes do aluno logado
+        if (!req.session.User)
+            res.badRequest('USUÁRIO NÃO RECONHECIDO')
+        const pontuacoesAluno = await Pontuacao.find({
+            aluno: req.session.User.id,
+        }).populate('atividade');
+        return res.status(200).json(pontuacoesAluno);
+    },
+
+    pontuacaoColegio: async function (req, res) { // Retorna todas as pontuacoes do colegio do aluno logado
+        if (!req.session.User)
+            res.badRequest('USUÁRIO NÃO RECONHECIDO')
+        
+        var alunosColegio = await Account.find({ // Acha os alunos da mesma sala e escola
+            where: {
+                escola: req.session.User.escola,
+                ano: req.session.User.ano,
+                role: 'aluno',
+            },
+            sort: 'totalpontos DESC'
+        });
+
+        ranking = alunosColegio.map(aluno => { // Simplifica o objeto de retorno somente com dados que serao usados
+            var returnObj = {};
+            returnObj['fullName'] = aluno.fullName;
+            returnObj['totalpontos'] = aluno.totalpontos;
+            returnObj['id'] = aluno.id;
+            return returnObj;
+        })
+
+        return res.status(200).json(ranking);
     }
 
 };

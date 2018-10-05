@@ -32,56 +32,56 @@ module.exports.bootstrap = async function(done) {
       emailAddress: 'teste@gmail.com',
       fullName: 'Teste da Silva',
       password: await sails.helpers.passwords.hashPassword('abc123'),
-      escola: 'Escola 1',
+      escola: 'Colégio Getúlio Vargas',
       ano: '5'},
     {
       id: 2,
       emailAddress: 'guilherme@gmail.com',
-      fullName: 'guilherme da Silva',
+      fullName: 'Guilherme da Silva',
       password: await sails.helpers.passwords.hashPassword('abc123'),
-      escola: 'Escola 1',
-      ano: '6'},
+      escola: 'Colégio Getúlio Vargas',
+      ano: '5'},
     {
       id: 3,
       emailAddress: 'gustavo@gmail.com',
-      fullName: 'gustavo da Silva',
+      fullName: 'Gustavo da Silva',
       password: await sails.helpers.passwords.hashPassword('abc123'),
-      escola: 'Escola 3',
+      escola: 'Colégio Paulo Fonseca',
       ano: '5'},
     {
       id: 4,
       emailAddress: 'roberto@gmail.com',
-      fullName: 'roberto da Silva',
+      fullName: 'Roberto da Silva',
       password: await sails.helpers.passwords.hashPassword('abc123'),
-      escola: 'Escola 1',
-      ano: '7'},
+      escola: 'Colégio Getúlio Vargas',
+      ano: '5'},
     {
       id: 5,
       emailAddress: 'silva@gmail.com',
-      fullName: 'silva da Silva',
+      fullName: 'Silva da Silva',
       password: await sails.helpers.passwords.hashPassword('abc123'),
-      escola: 'Escola 5',
+      escola: 'Colégio ABCD',
       ano: '8'},
     {
       id: 6,
       emailAddress: 'silvana@gmail.com',
-      fullName: 'silvana da Silva',
+      fullName: 'Silvana da Silva',
       password: await sails.helpers.passwords.hashPassword('abc123'),
-      escola: 'Escola 1',
+      escola: 'Colégio Getúlio Vargas',
       ano: '9'},
     {
       id: 7,
       emailAddress: 'iodites@gmail.com',
-      fullName: 'iodites da Silva',
+      fullName: 'Iodites da Silva',
       password: await sails.helpers.passwords.hashPassword('abc123'),
-      escola: 'Escola 2',
-      ano: '3'},
+      escola: 'Colégio Getúlio Vargas',
+      ano: '5'},
     {
       id: 8,
       emailAddress: 'superadmin@gmail.com',
       fullName: 'SUPER ADMIN TEST',
       password: await sails.helpers.passwords.hashPassword('superadmin'),
-      escola: 'Escola 2',
+      escola: 'Colégio Getúlio Vargas',
       ano: '3',
       role: 'superadmin',
     },
@@ -90,7 +90,7 @@ module.exports.bootstrap = async function(done) {
       emailAddress: 'professor@gmail.com',
       fullName: 'PROFESSOR TEST',
       password: await sails.helpers.passwords.hashPassword('professor'),
-      escola: 'Escola 2',
+      escola: 'Colégio Getúlio Vargas',
       ano: '3',
       role: 'professor',
     },
@@ -99,7 +99,7 @@ module.exports.bootstrap = async function(done) {
       emailAddress: 'diretor@gmail.com',
       fullName: 'DIRETOR TEST',
       password: await sails.helpers.passwords.hashPassword('diretor'),
-      escola: 'Escola 2',
+      escola: 'Colégio Getúlio Vargas',
       ano: '3',
       role: 'diretor',
     },
@@ -337,15 +337,19 @@ module.exports.bootstrap = async function(done) {
   let p = [];
   let numalunos = await Account.count();
   for(let i=1; i<=numalunos; i++){
+    let totalpontosaluno = 0;
     for(let j=1; j<=4; j++){ // Cria uma pontuacao de cada atividade para cada aluno
+      let pontosquiz = Math.floor(Math.random() * 90) + 30;
+      let pontosaula = Math.floor(Math.random() * 120) + 70;
+      totalpontosaluno += pontosaula + pontosquiz;
       p.push({  
-        pontuacaoQuiz: Math.floor(Math.random() * 90) + 30, // Valor random 
-        pontuacaoAula: Math.floor(Math.random() * 120) + 70,
+        pontuacaoQuiz: pontosquiz, // Valor random 
+        pontuacaoAula: pontosaula,
         aluno: i,
         atividade: j,
       });
     }
-    
+    await Account.update({id: i}).set({totalpontos: totalpontosaluno});
   }
 
   await Pontuacao.createEach(p);

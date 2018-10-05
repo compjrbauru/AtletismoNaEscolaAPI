@@ -71,7 +71,12 @@ email status until they click the link in the confirmation email.`
     Pontuacoes: {
       collection: 'Pontuacao',
       via: 'aluno',
-    }
+    },
+
+    totalpontos: {
+      type: 'number',
+      defaultsTo: 0,
+    },
 
   },
 

@@ -63,6 +63,7 @@ module.exports = {
         this.req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
       }
     }
+    inputs.session.User = userRecord;
 
     return exits.json(userRecord);
 
