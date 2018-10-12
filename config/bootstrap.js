@@ -233,17 +233,17 @@ module.exports.bootstrap = async function(done) {
     {
       questoes: [19, 20],
       id: 5,
-      titulo: 'Quiz Corrida SEM CONTEUDO 1 (TESTE)',
+      titulo: 'Quiz Corrida SEM CONTEUDO E ATIVIDADE 1 (TESTE)',
     },
     {
       questoes: [21, 22],
       id: 6,
-      titulo: 'Quiz Corrida SEM CONTEUDO 2 (TESTE)',
+      titulo: 'Quiz Corrida SEM CONTEUDO E ATIVIDADE 2 (TESTE)',
     },
     {
       questoes: [23, 24],
       id: 7,
-      titulo: 'Quiz Corrida SEM CONTEUDO 3 (TESTE)',
+      titulo: 'Quiz Corrida SEM CONTEUDO E ATIVIDADE 3 (TESTE)',
     },
     {
       questoes: [15, 16, 17, 18],
