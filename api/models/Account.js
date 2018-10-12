@@ -29,8 +29,8 @@ module.exports = {
     },
 
     escola: {
+      model: 'Colegio',
       required: true,
-      type: 'string',
     },
 
     ano: {
