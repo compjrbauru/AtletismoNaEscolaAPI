@@ -17,8 +17,8 @@ module.exports = {
       via: 'ownerAtividade',
     },
     provaPratica: {
-      collection: 'Provapratica',
-      via: 'ownerProvaPratica',
+      type: 'string',
+      required: true,
     },
   },
 
