@@ -44,7 +44,7 @@ module.exports = {
   login: async function (inputs, exits) {
     var userRecord = await Account.findOne({
       emailAddress: inputs.body.emailAddress.toLowerCase(),
-    });
+    }).populate('escola');
 
     if(!userRecord) {
       throw 'badCombo';
