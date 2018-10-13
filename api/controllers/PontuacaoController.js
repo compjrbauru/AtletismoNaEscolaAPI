@@ -39,7 +39,7 @@ module.exports = {
         
         var alunosColegio = await Account.find({ // Acha os alunos da mesma sala e escola
             where: {
-                escola: req.session.User.escola,
+                escola: req.session.User.escola.id,
                 ano: req.session.User.ano,
                 role: 'aluno',
             },
