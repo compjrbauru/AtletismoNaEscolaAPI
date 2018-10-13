@@ -25,7 +25,7 @@ module.exports = {
     },
 
     pontuacaoAluno: async function (req, res) { // Retorna todas as pontuacoes do aluno logado
-        if (!req.session.User)
+        if (req.session.User === undefined)
             res.badRequest('USUÁRIO NÃO RECONHECIDO')
         const pontuacoesAluno = await Pontuacao.find({
             aluno: req.session.User.id,
@@ -34,7 +34,7 @@ module.exports = {
     },
 
     pontuacaoColegio: async function (req, res) { // Retorna todas as pontuacoes do colegio do aluno logado
-        if (!req.session.User)
+        if (req.session.User === undefined)
             res.badRequest('USUÁRIO NÃO RECONHECIDO')
         
         var alunosColegio = await Account.find({ // Acha os alunos da mesma sala e escola
