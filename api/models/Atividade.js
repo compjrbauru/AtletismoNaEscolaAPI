@@ -11,6 +11,7 @@ module.exports = {
     titulo: {
       type: 'string',
       required: true,
+      unique: true,
     },
     quiz: {
       collection: 'Quiz',
