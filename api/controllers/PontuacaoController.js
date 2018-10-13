@@ -55,7 +55,12 @@ module.exports = {
         })
 
         return res.status(200).json(ranking);
-    }
+    },
+
+    getAllPontuacao: async function (req, res) {
+        let pontuacoes = await Pontuacao.find().populate('atividade').populate('aluno');
+        return res.status(200).json(pontuacoes);
+    },
 
 };
 
