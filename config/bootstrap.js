@@ -124,7 +124,7 @@ module.exports.bootstrap = async function(done) {
   ]);
 
   var q = [];
-  for(let j=7; j<26; j++){ // Cria perguntas
+  for(let j=7; j<35; j++){ // Cria perguntas
     q.push({
       Pergunta: 'Pergunta ' + j,
       RespostaCorreta: '1',
@@ -282,7 +282,7 @@ module.exports.bootstrap = async function(done) {
       titulo: 'Quiz Corrida SEM CONTEUDO 3 (TESTE)',
     },
     {
-      questoes: [15, 16, 17, 18],
+      questoes: [25, 26, 27, 28],
       conteudo: 5,
       ownerAtividade: 5,
       id: 8,

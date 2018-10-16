@@ -27,7 +27,8 @@ module.exports = {
 
         let id = req.param('id');
         await Conteudo.update({id: id}).set(req.body);
-        return res.status(200).json('ok');
+        let record = await Conteudo.findOne({id: id}).populate('owner');
+        return res.status(200).json(record);
     },
 
     deleteConteudo: async function (req, res) {
