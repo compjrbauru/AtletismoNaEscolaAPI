@@ -29,4 +29,9 @@ module.exports.routes = {
  'post /pontuacao': 'PontuacaoController.verifyCreatePontuacao',
  'get /pontuacao-aluno': 'PontuacaoController.pontuacaoAluno',
  'get /pontuacao-colegio': 'PontuacaoController.pontuacaoColegio',
+
+ 'post /conteudo': 'ConteudoController.createConteudo',
+ 'get /conteudo/:id?': 'ConteudoController.getConteudo',
+ 'patch /conteudo/:id': 'ConteudoController.patchConteudo',
+ 'delete /conteudo/:id': 'ConteudoController.deleteConteudo',
 };
