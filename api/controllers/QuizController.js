@@ -64,10 +64,10 @@ module.exports = {
         return res.json(livres);
     },
     quizNaoRespondidos: async function (req, res) {
-        var pontuacoesAluno = await Pontuacao.find({
+        let pontuacoesAluno = await Pontuacao.find({
           aluno: req.session.User.id,
         });
-        var quizes = await Quiz.find().populate('conteudo').populate('ownerAtividade');
+        let quizes = await Quiz.find().populate('conteudo').populate('ownerAtividade');
         let filtredQuizes = quizes.filter(quiz => {
             return !pontuacoesAluno.map(pontuacoes => {
                 return (quiz.ownerAtividade && quiz.ownerAtividade.id === pontuacoes.atividade);
