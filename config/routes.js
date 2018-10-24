@@ -25,10 +25,11 @@ module.exports.routes = {
  'post /signup':'AccountController.signup',
  'post /login': 'LoginController.login',
  'get /todas-atividades': 'AtividadeController.atividadeTotal',
- 'get /quizes-livres': 'QuizController.QuizesLivresConteudo',
+ 'get /quizes-livres-conteudo': 'QuizController.QuizesLivresConteudo',
  'post /pontuacao': 'PontuacaoController.verifyCreatePontuacao',
  'get /pontuacao-aluno': 'PontuacaoController.pontuacaoAluno',
  'get /pontuacao-colegio': 'PontuacaoController.pontuacaoColegio',
+ 'get /quizes-livres-atividade': 'QuizController.QuizesLivresAtividade',
 
  'post /conteudo': 'ConteudoController.createConteudo',
  'get /conteudo/:id?': 'ConteudoController.getConteudo',

@@ -11,14 +11,15 @@ module.exports = {
     titulo: {
       type: 'string',
       required: true,
+      unique: true,
     },
     quiz: {
       collection: 'Quiz',
       via: 'ownerAtividade',
     },
     provaPratica: {
-      collection: 'Provapratica',
-      via: 'ownerProvaPratica',
+      type: 'string',
+      required: true,
     },
   },
 

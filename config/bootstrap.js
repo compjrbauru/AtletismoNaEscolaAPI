@@ -269,17 +269,17 @@ module.exports.bootstrap = async function(done) {
     {
       questoes: [19, 20],
       id: 5,
-      titulo: 'Quiz Corrida SEM CONTEUDO 1 (TESTE)',
+      titulo: 'Quiz Corrida SEM CONTEUDO E ATIVIDADE 1 (TESTE)',
     },
     {
       questoes: [21, 22],
       id: 6,
-      titulo: 'Quiz Corrida SEM CONTEUDO 2 (TESTE)',
+      titulo: 'Quiz Corrida SEM CONTEUDO E ATIVIDADE 2 (TESTE)',
     },
     {
       questoes: [23, 24],
       id: 7,
-      titulo: 'Quiz Corrida SEM CONTEUDO 3 (TESTE)',
+      titulo: 'Quiz Corrida SEM CONTEUDO E ATIVIDADE 3 (TESTE)',
     },
     {
       questoes: [15, 16, 17, 18],
@@ -290,64 +290,36 @@ module.exports.bootstrap = async function(done) {
     },
   ]);
 
-  await Provapratica.createEach([
-    {
-      titulo: 'Aula Pratica 1',
-      id: 1,
-      ownerProvaPratica: 1
-    },
-    {
-      titulo: 'Aula Pratica 2',
-      id: 2,
-      ownerProvaPratica: 2
-    },
-    {
-      titulo: 'Aula Pratica 3',
-      id: 3,
-      ownerProvaPratica: 3
-    },
-    {
-      titulo: 'Aula Pratica 4',
-      id: 4,
-      ownerProvaPratica: 4
-    },
-    {
-      titulo: 'Aula Pratica 5',
-      id: 5,
-      ownerProvaPratica: 5
-    },
-  ])
-
   await Atividade.createEach([
     {
       id: 1,
       titulo: 'Atividade Corrida Rasa',
       quiz: 1,
-      provaPratica: 1,
+      provaPratica: 'Prova prática 1',
     },
     {
       id: 2,
       titulo: 'Atividade Corrida Rasa Prolongada',
       quiz: 2,
-      provaPratica: 2,
+      provaPratica: 'Prova prática 2',
     },
     {
       id: 3,
       titulo: 'Atividade 3',
       quiz: 3,
-      provaPratica: 3,
+      provaPratica: 'Prova prática 3',
     },
     {
       id: 4,
       titulo: 'Atividade 4',
       quiz: 4,
-      provaPratica: 4,
+      provaPratica: 'Prova prática 4',
     },
     {
       id: 5,
       titulo: 'Atividade 5 - Sem Pontuacoes (TESTE)',
       quiz: 8,
-      provaPratica: 5,
+      provaPratica: 'Prova prática 5',
     },
   ]);
 

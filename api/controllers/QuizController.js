@@ -16,5 +16,15 @@ module.exports = {
             }
         });
         return res.json(livres);
+    },
+
+    QuizesLivresAtividade: async function (inputs, res) { // Retorna todos os quizes que nao tem atividade associado
+        let quizes = await Quiz.find().populate('ownerAtividade');
+        let livres = [];
+        quizes.forEach(quiz => {
+            if (!quiz.ownerAtividade)
+                livres.push(quiz);
+        });
+        return res.json(livres);
     }
 };
