@@ -35,4 +35,9 @@ module.exports.routes = {
  'get /conteudo/:id?': 'ConteudoController.getConteudo',
  'patch /conteudo/:id': 'ConteudoController.patchConteudo',
  'delete /conteudo/:id': 'ConteudoController.deleteConteudo',
+
+ 'get /questao/:id?': 'QuestoesController.getQuestao',
+ 'post /questao': 'QuestoesController.createQuestao',
+ 'delete /questao/:id': 'QuestoesController.deleteQuestao',
+ 'patch /questao/:id': 'QuestoesController.patchQuestao',
 };
