@@ -7,11 +7,6 @@
 
 module.exports = {
 
-  atividadeTotal: async function (inputs, res) {
-    var atividade = await Atividade.find().populate('Quiz');
-    return res.json(atividade);
-  },
-
   getAtividade: async function (req, res) {
     let id = req.param('id');
     let response;

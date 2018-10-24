@@ -62,5 +62,17 @@ module.exports = {
                 livres.push(quiz);
         });
         return res.json(livres);
-    }
+    },
+    quizNaoRespondidos: async function (req, res) {
+        var pontuacoesAluno = await Pontuacao.find({
+          aluno: 1,
+        });
+        var quizes = await Quiz.find().populate('conteudo').populate('ownerAtividade');
+        let filtredQuizes = quizes.filter(quiz => {
+            return !pontuacoesAluno.map(pontuacoes => {
+                return (quiz.ownerAtividade && quiz.ownerAtividade.id === pontuacoes.atividade);
+            }).some(pontuacao => pontuacao === true);
+        });
+        return res.json(filtredQuizes);
+      }
 };
