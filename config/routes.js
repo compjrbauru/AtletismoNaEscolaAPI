@@ -24,7 +24,6 @@ module.exports.routes = {
 
  'post /signup':'AccountController.signup',
  'post /login': 'LoginController.login',
-
  'post /pontuacao': 'PontuacaoController.verifyCreatePontuacao',
  'get /pontuacao-colegio': 'PontuacaoController.pontuacaoColegio',
  'get /pontuacao-aluno': 'PontuacaoController.pontuacaoAluno',
