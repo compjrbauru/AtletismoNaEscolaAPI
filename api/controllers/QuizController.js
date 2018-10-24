@@ -65,7 +65,7 @@ module.exports = {
     },
     quizNaoRespondidos: async function (req, res) {
         var pontuacoesAluno = await Pontuacao.find({
-          aluno: 1,
+          aluno: req.session.User.id,
         });
         var quizes = await Quiz.find().populate('conteudo').populate('ownerAtividade');
         let filtredQuizes = quizes.filter(quiz => {
@@ -74,5 +74,5 @@ module.exports = {
             }).some(pontuacao => pontuacao === true);
         }).sort([{ createdAt: 'ASC' }]);
         return res.json(filtredQuizes);
-      }
+    }
 };
