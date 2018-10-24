@@ -24,27 +24,33 @@ module.exports.routes = {
 
  'post /signup':'AccountController.signup',
  'post /login': 'LoginController.login',
+
  'get /todas-atividades': 'AtividadeController.atividadeTotal',
  'get /quizes-livres-conteudo': 'QuizController.QuizesLivresConteudo',
+ 'get /quizes-livres-atividade': 'QuizController.QuizesLivresAtividade',
+
  'post /pontuacao': 'PontuacaoController.verifyCreatePontuacao',
  'get /pontuacao-aluno': 'PontuacaoController.pontuacaoAluno',
  'get /pontuacao-colegio': 'PontuacaoController.pontuacaoColegio',
- 'get /quizes-livres-atividade': 'QuizController.QuizesLivresAtividade',
-
+ 
  'post /conteudo': 'ConteudoController.createConteudo',
  'get /conteudo/:id?': 'ConteudoController.getConteudo',
  'patch /conteudo/:id': 'ConteudoController.patchConteudo',
  'delete /conteudo/:id': 'ConteudoController.deleteConteudo',
 
-<<<<<<< HEAD
  'get /questao/:id?': 'QuestoesController.getQuestao',
  'post /questao': 'QuestoesController.createQuestao',
  'delete /questao/:id': 'QuestoesController.deleteQuestao',
  'patch /questao/:id': 'QuestoesController.patchQuestao',
-=======
+
  'get /quiz/:id?': 'QuizController.getQuizes',
  'patch /quiz/:id': 'QuizController.patchQuiz',
  'post /quiz': 'QuizController.createQuiz',
  'delete /quiz/:id': 'QuizController.deleteQuiz',
->>>>>>> origin/master
+
+ 'get /atividade/:id?': 'AtividadeController.getAtividade',
+ 'post /atividade': 'AtividadeController.createAtividade',
+ 'delete /atividade/:id': 'AtividadeController.deleteAtividade',
+ 'patch /atividade/:id': 'AtividadeController.patchAtividade',
+ 
 };
