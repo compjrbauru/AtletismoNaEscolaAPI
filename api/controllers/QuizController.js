@@ -72,7 +72,7 @@ module.exports = {
             return !pontuacoesAluno.map(pontuacoes => {
                 return (quiz.ownerAtividade && quiz.ownerAtividade.id === pontuacoes.atividade);
             }).some(pontuacao => pontuacao === true);
-        });
+        }).sort([{ createdAt: 'ASC' }]);
         return res.json(filtredQuizes);
       }
 };
