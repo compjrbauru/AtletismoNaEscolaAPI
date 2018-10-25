@@ -18,6 +18,7 @@ module.exports = {
         return res.json(livres);
     },
 
+<<<<<<< HEAD
     getQuizes: async function (req, res) {
         let id = req.param('id');
         let response;
@@ -54,4 +55,15 @@ module.exports = {
         await Quiz.create(req.body);
         return res.status(200).json('ok');
     },
+=======
+    QuizesLivresAtividade: async function (inputs, res) { // Retorna todos os quizes que nao tem atividade associado
+        let quizes = await Quiz.find().populate('ownerAtividade');
+        let livres = [];
+        quizes.forEach(quiz => {
+            if (!quiz.ownerAtividade)
+                livres.push(quiz);
+        });
+        return res.json(livres);
+    }
+>>>>>>> origin/master
 };

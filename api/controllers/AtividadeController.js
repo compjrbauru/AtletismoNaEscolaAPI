@@ -8,7 +8,7 @@
 module.exports = {
 
   atividadeTotal: async function (inputs, res) {
-    var atividade = await Atividade.find().populate('Quiz').populate('provaPratica');
+    var atividade = await Atividade.find().populate('Quiz');
     return res.json(atividade);
   }
 
