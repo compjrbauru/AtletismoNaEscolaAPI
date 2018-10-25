@@ -36,8 +36,15 @@ module.exports.routes = {
  'patch /conteudo/:id': 'ConteudoController.patchConteudo',
  'delete /conteudo/:id': 'ConteudoController.deleteConteudo',
 
+<<<<<<< HEAD
  'get /questao/:id?': 'QuestoesController.getQuestao',
  'post /questao': 'QuestoesController.createQuestao',
  'delete /questao/:id': 'QuestoesController.deleteQuestao',
  'patch /questao/:id': 'QuestoesController.patchQuestao',
+=======
+ 'get /quiz/:id?': 'QuizController.getQuizes',
+ 'patch /quiz/:id': 'QuizController.patchQuiz',
+ 'post /quiz': 'QuizController.createQuiz',
+ 'delete /quiz/:id': 'QuizController.deleteQuiz',
+>>>>>>> origin/master
 };
