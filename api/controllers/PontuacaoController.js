@@ -8,10 +8,16 @@
 module.exports = {
 
     verifyCreatePontuacao: async function (req, res) { // Verifica, ao criar uma pontuação se ela já existe ou não
+        if (req.session.User === undefined)
+            return res.badRequest('USUÁRIO NÃO RECONHECIDO');
+        else if (req.session.User.role === 'aluno')
+            return res.badRequest('ACESSO RESTRITO');
+        console.log(req.body);
         var pontuacoes = await Pontuacao.find({
             aluno: req.body.aluno,
             atividade: req.body.atividade
         });
+        console.log(pontuacoes);
         if (pontuacoes.length > 0)
             return res.badRequest('PONTUAÇÃO JÁ EXISTE!');
         var aluno = await Account.findOne({
@@ -26,7 +32,8 @@ module.exports = {
 
     pontuacaoAluno: async function (req, res) { // Retorna todas as pontuacoes do aluno logado
         if (req.session.User === undefined)
-            res.badRequest('USUÁRIO NÃO RECONHECIDO')
+            return res.badRequest('USUÁRIO NÃO RECONHECIDO');
+
         const pontuacoesAluno = await Pontuacao.find({
             aluno: req.session.User.id,
         }).populate('atividade');
@@ -35,7 +42,7 @@ module.exports = {
 
     pontuacaoColegio: async function (req, res) { // Retorna todas as pontuacoes do colegio do aluno logado
         if (req.session.User === undefined)
-            res.badRequest('USUÁRIO NÃO RECONHECIDO')
+            return res.badRequest('USUÁRIO NÃO RECONHECIDO');
         
         var alunosColegio = await Account.find({ // Acha os alunos da mesma sala e escola
             where: {
@@ -55,7 +62,36 @@ module.exports = {
         })
 
         return res.status(200).json(ranking);
-    }
+    },
+
+    getPontuacao: async function (req, res) {
+        let id = req.param('id');
+        let pontuacao = (id)? await Pontuacao.findOne({id: id}).populate('aluno').populate('atividade') :  await Pontuacao.find().populate('atividade').populate('aluno');
+        return res.status(200).json(pontuacao);
+    },
+
+    patchPontuacao: async function (req, res) {
+        if (req.session.User === undefined)
+            return res.badRequest('USUÁRIO NÃO RECONHECIDO');
+        else if (req.session.User.role === 'aluno')
+            return res.badRequest('ACESSO RESTRITO');
+
+        let id = req.param('id');
+        await Pontuacao.update({id: id}).set(req.body);
+        let pontuacao = await Pontuacao.findOne({id: id}).populate('aluno').populate('atividade');
+        return res.status(200).json(pontuacao);
+    },
+
+    deletePontuacao: async function (req, res) {
+        if (req.session.User === undefined)
+            return res.badRequest('USUÁRIO NÃO RECONHECIDO');
+        else if (req.session.User.role === 'aluno')
+            return res.badRequest('ACESSO RESTRITO');
+
+        let id = req.param('id');
+        await Pontuacao.destroy({id: id});
+        return res.status(200).json('ok');
+    },
 
 };
 
