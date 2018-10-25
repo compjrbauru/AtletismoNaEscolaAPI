@@ -41,15 +41,32 @@ module.exports = {
     pontuacaoColegio: async function (req, res) { // Retorna todas as pontuacoes do colegio do aluno logado
         if (req.session.User === undefined)
             return res.badRequest('USUÁRIO NÃO RECONHECIDO');
-        
-        var alunosColegio = await Account.find({ // Acha os alunos da mesma sala e escola
-            where: {
-                escola: req.session.User.escola.id,
-                ano: req.session.User.ano,
-                role: 'aluno',
-            },
-            sort: 'totalpontos DESC'
-        });
+        let role = req.session.User.role;
+        var alunosColegio;
+        if (role === 'aluno' || role === 'professor')
+            alunosColegio = await Account.find({ // Acha os alunos da mesma sala e escola
+                where: {
+                    escola: req.session.User.escola.id,
+                    ano: req.session.User.ano,
+                    role: 'aluno',
+                },
+                sort: 'totalpontos DESC'
+            });
+        else if (role === 'diretor')
+            alunosColegio = await Account.find({ // Acha os alunos da mesma sala e escola
+                where: {
+                    escola: req.session.User.escola.id,
+                    role: 'aluno',
+                },
+                sort: 'totalpontos DESC'
+            });
+        else if (role === 'superadmin')
+            alunosColegio = await Account.find({ // Acha os alunos da mesma sala e escola
+                where: {
+                    role: 'aluno',
+                },
+                sort: 'totalpontos DESC'
+            });
 
         ranking = alunosColegio.map(aluno => { // Simplifica o objeto de retorno somente com dados que serao usados
             var returnObj = {};
