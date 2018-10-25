@@ -1,7 +1,6 @@
 
 module.exports = {
   auth: async function (inputs, res) {
-    console.log(inputs.session);
     if (inputs.session.authenticated) {
       return ok();
     } else {

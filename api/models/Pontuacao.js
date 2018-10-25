@@ -10,9 +10,11 @@ module.exports = {
   attributes: {
     pontuacaoQuiz: {
       type: 'number',
+      defaultsTo: 0
     },
     pontuacaoAula: {
       type: 'number',
+      defaultsTo: 0
     },
     aluno: {
       model: 'Account',
