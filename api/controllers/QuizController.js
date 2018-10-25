@@ -50,8 +50,8 @@ module.exports = {
     createQuiz: async function (req, res) {
         if (req.session.User === undefined || req.session.User.role == 'aluno')
             return res.badRequest('ACESSO RESTRITO');
-        
-        await Conteudo.create(req.body);
+        // console.log(req.body);
+        await Quiz.create(req.body);
         return res.status(200).json('ok');
     },
 };
