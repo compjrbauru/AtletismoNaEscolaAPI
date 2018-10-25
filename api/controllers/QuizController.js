@@ -50,7 +50,6 @@ module.exports = {
     createQuiz: async function (req, res) {
         if (req.session.User === undefined || req.session.User.role == 'aluno')
             return res.badRequest('ACESSO RESTRITO');
-        // console.log(req.body);
         await Quiz.create(req.body);
         return res.status(200).json('ok');
     },
@@ -62,5 +61,17 @@ module.exports = {
                 livres.push(quiz);
         });
         return res.json(livres);
+    },
+    quizNaoRespondidos: async function (req, res) {
+        let pontuacoesAluno = await Pontuacao.find({
+          aluno: req.session.User.id,
+        });
+        let quizes = await Quiz.find().populate('conteudo').populate('ownerAtividade');
+        let filtredQuizes = quizes.filter(quiz => {
+            return !pontuacoesAluno.map(pontuacoes => {
+                return (quiz.ownerAtividade !== null && quiz.ownerAtividade.id === pontuacoes.atividade && pontuacoes && pontuacoes.pontuacaoQuiz !== 0);
+            }).some(pontuacao => pontuacao === true) && quiz.ownerAtividade !== null;
+        });
+        return res.json(filtredQuizes);
     }
 };

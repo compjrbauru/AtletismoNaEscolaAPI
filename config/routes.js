@@ -24,11 +24,6 @@ module.exports.routes = {
 
  'post /signup':'AccountController.signup',
  'post /login': 'LoginController.login',
-
- 'get /todas-atividades': 'AtividadeController.atividadeTotal',
- 'get /quizes-livres-conteudo': 'QuizController.QuizesLivresConteudo',
- 'get /quizes-livres-atividade': 'QuizController.QuizesLivresAtividade',
-
  'post /pontuacao': 'PontuacaoController.verifyCreatePontuacao',
  'get /pontuacao-colegio': 'PontuacaoController.pontuacaoColegio',
  'get /pontuacao-aluno': 'PontuacaoController.pontuacaoAluno',
@@ -46,6 +41,9 @@ module.exports.routes = {
  'delete /questao/:id': 'QuestoesController.deleteQuestao',
  'patch /questao/:id': 'QuestoesController.patchQuestao',
 
+ 'get /quizes-livres-conteudo': 'QuizController.QuizesLivresConteudo',
+ 'get /quizes-livres-atividade': 'QuizController.QuizesLivresAtividade',
+ 'get /quiz-nao-respondido': 'QuizController.quizNaoRespondidos',
  'get /quiz/:id?': 'QuizController.getQuizes',
  'patch /quiz/:id': 'QuizController.patchQuiz',
  'post /quiz': 'QuizController.createQuiz',

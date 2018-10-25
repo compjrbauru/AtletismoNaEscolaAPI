@@ -12,12 +12,10 @@ module.exports = {
             return res.badRequest('USUÁRIO NÃO RECONHECIDO');
         else if (req.session.User.role === 'aluno')
             return res.badRequest('ACESSO RESTRITO');
-        console.log(req.body);
         var pontuacoes = await Pontuacao.find({
             aluno: req.body.aluno,
             atividade: req.body.atividade
         });
-        console.log(pontuacoes);
         if (pontuacoes.length > 0)
             return res.badRequest('PONTUAÇÃO JÁ EXISTE!');
         var aluno = await Account.findOne({
