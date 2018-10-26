@@ -66,7 +66,7 @@ module.exports = {
         let pontuacoesAluno = await Pontuacao.find({
           aluno: req.session.User.id,
         });
-        let quizes = await Quiz.find().populate('conteudo').populate('ownerAtividade');
+        let quizes = await Quiz.find().populate('conteudo').populate('ownerAtividade').populate('questoes');
         let filtredQuizes = quizes.filter(quiz => {
             return !pontuacoesAluno.map(pontuacoes => {
                 return (quiz.ownerAtividade !== null && quiz.ownerAtividade.id === pontuacoes.atividade && pontuacoes && pontuacoes.pontuacaoQuiz !== 0);
