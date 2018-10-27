@@ -38,6 +38,29 @@ module.exports = {
         return res.status(200).json(pontuacoesAluno);
     },
 
+    pontuacaoQuiz: async function (req, res) {
+        if (req.session.User === undefined)
+            return res.badRequest('USUÁRIO NÃO RECONHECIDO');
+        console.log(req.body);
+        const pontuacao = await Pontuacao.find({
+            aluno: req.session.User.id,
+            atividade: req.body.atividade,
+        });
+        if (pontuacao && pontuacao.length) {
+            await Pontuacao.update({id: pontuacao.id}).set({
+                pontuacaoQuiz: req.body.pontuacao
+            });
+        } else {
+            await Pontuacao.create({
+                aluno: req.session.User.id,
+                atividade: req.body.atividade,
+                pontuacaoQuiz: req.body.pontuacao,
+                pontuacaoAula: 0,
+            });
+        }
+        return res.status(200).json('ok');
+    },
+
     pontuacaoColegio: async function (req, res) { // Retorna todas as pontuacoes do colegio do aluno logado
         if (req.session.User === undefined)
             return res.badRequest('USUÁRIO NÃO RECONHECIDO');
