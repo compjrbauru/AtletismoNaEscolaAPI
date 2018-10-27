@@ -6,57 +6,6 @@
  */
 
 module.exports = {
-  inputs: {
-
-    emailAddress: {
-      required: true,
-      type: 'string',
-      isEmail: true,
-    },
-
-    password: {
-      required: true,
-      type: 'string',
-      maxLength: 200,
-    },
-
-    fullName:  {
-      required: true,
-      type: 'string',
-    },
-
-    escola: {
-      required: true,
-      type: 'string',
-    },
-
-    ano: {
-      required: true,
-      type: 'string',
-    },
-
-  },
-
-  exits: {
-
-    invalid: {
-      responseType: 'badRequest',
-      description: 'The provided fullName, password and/or email address are invalid.',
-      extendedDescription: 'If this request was sent from a graphical user interface, the request '+
-      'parameters should have been validated/coerced _before_ they were sent.'
-    },
-
-    emailAlreadyInUse: {
-      statusCode: 409,
-      description: 'The provided email address is already in use.',
-    },
-
-    success: {
-      responseType: 'json',
-    },
-
-
-  },
 
   signup: async function (inputs, res) {
     var newEmailAddress = inputs.body.emailAddress.toLowerCase();
@@ -76,6 +25,40 @@ module.exports = {
 
     return res.ok();
 
+  },
+
+  getAccount: async function (req, res) {
+    let id = req.param('id');
+    let response = (id) ? await Account.findOne({id: id}) : await Account.find();
+    return res.status(200).json(response);
+  },
+
+  createAccount: async function (req, res) {
+    if (req.session.User === undefined || req.session.User.role == 'aluno')
+      return res.badRequest('ACESSO RESTRITO');
+
+    await Account.create(req.body);
+    return res.status(200).json('ok');
+  },
+
+  deleteAccount: async function(req, res) {
+    if (req.session.User === undefined || req.session.User.role == 'aluno')
+      return res.badRequest('ACESSO RESTRITO');
+
+    let id = req.param('id');
+    await Pontuacao.destroy({aluno: id});
+    await Account.destroy({id: id});
+    return res.status(200).json('ok');
+  },
+
+  patchAccount: async function (req, res) {
+    if (req.session.User === undefined || req.session.User.role == 'aluno')
+      return res.badRequest('ACESSO RESTRITO');
+
+    let id = req.param('id');
+    await Account.update({id: id}).set(req.body);
+    let record = await Account.findOne({id: id});
+    return res.status(200).json(record);
   }
 
 };

@@ -24,6 +24,7 @@ module.exports.routes = {
 
  'post /signup':'AccountController.signup',
  'post /login': 'LoginController.login',
+
  'post /pontuacao': 'PontuacaoController.verifyCreatePontuacao',
  'get /pontuacao-colegio': 'PontuacaoController.pontuacaoColegio',
  'get /pontuacao-aluno': 'PontuacaoController.pontuacaoAluno',
@@ -58,4 +59,9 @@ module.exports.routes = {
  'post /colegio': 'ColegioController.createColegio',
  'delete /colegio/:id': 'ColegioController.deleteColegio',
  'patch /colegio/:id': 'ColegioController.patchColegio',
+
+ 'get /account/:id?': 'AccountController.getAccount',
+ 'post /account': 'AccountController.createAccount',
+ 'delete /account/:id': 'AccountController.deleteAccount',
+ 'patch /account/:id': 'AccountController.patchAccount',
 };
