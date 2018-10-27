@@ -61,7 +61,9 @@ module.exports.routes = {
  'patch /colegio/:id': 'ColegioController.patchColegio',
 
  'get /account/:id?': 'AccountController.getAccount',
- 'post /account': 'AccountController.createAccount',
+ 'post /account': 'AccountController.signup',
  'delete /account/:id': 'AccountController.deleteAccount',
  'patch /account/:id': 'AccountController.patchAccount',
+
+ 'get /professores': 'AccountController.getProfessores',
 };
