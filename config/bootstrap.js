@@ -1,3 +1,4 @@
+var faker = require('faker');
 /**
  * Bootstrap
  * (sails.config.bootstrap)
@@ -27,75 +28,29 @@ module.exports.bootstrap = async function(done) {
   // ]);
   // ```
 
-  await Colegio.createEach([
-    {
-      id: 1,
-      nome: 'Colégio Getúlio Vargas',
-      endereco: 'rua 1, 123, 312310-232 Belavista, bauru-sp',
-    },
-    {
-      id: 2,
-      nome: 'Colégio 2',
-      endereco: 'rua 1',
-    },
-    {
-      id: 3,
-      nome: 'Colégio 3',
-      endereco: 'rua 23',
-    },
-  ])
+  var COLEGIOS = [];
+  let ABC123 = await sails.helpers.passwords.hashPassword('abc123'); // Senha para a maioria das contas
+
+  for(let i=1; i<=6; i++) { // Cria 6 colegios
+    COLEGIOS.push({
+      id: i,
+      nome: 'Colégio ' + faker.company.companyName(),
+      endereco: faker.address.streetAddress(),
+    });
+  }
+  await Colegio.createEach(COLEGIOS);
+
   await Account.createEach([
     {
       id: 1,
-      emailAddress: 'teste@gmail.com',
-      fullName: 'Teste da Silva',
-      password: await sails.helpers.passwords.hashPassword('abc123'),
-      escola: 1,
-      ano: '5'},
-    {
-      id: 2,
-      emailAddress: 'guilherme@gmail.com',
-      fullName: 'Guilherme da Silva',
-      password: await sails.helpers.passwords.hashPassword('abc123'),
-      escola: 1,
-      ano: '5'},
-    {
-      id: 3,
-      emailAddress: 'gustavo@gmail.com',
-      fullName: 'Gustavo da Silva',
-      password: await sails.helpers.passwords.hashPassword('abc123'),
-      escola: 2,
-      ano: '5'},
-    {
-      id: 4,
-      emailAddress: 'roberto@gmail.com',
-      fullName: 'Roberto da Silva',
-      password: await sails.helpers.passwords.hashPassword('abc123'),
-      escola: 1,
-      ano: '5'},
-    {
-      id: 5,
-      emailAddress: 'silva@gmail.com',
-      fullName: 'Silva da Silva',
-      password: await sails.helpers.passwords.hashPassword('abc123'),
-      escola: 3,
-      ano: '8'},
-    {
-      id: 6,
-      emailAddress: 'silvana@gmail.com',
-      fullName: 'Silvana da Silva',
-      password: await sails.helpers.passwords.hashPassword('abc123'),
-      escola: 1,
-      ano: '9'},
-    {
-      id: 7,
       emailAddress: 'iodites@gmail.com',
       fullName: 'Iodites da Silva',
-      password: await sails.helpers.passwords.hashPassword('abc123'),
+      password: ABC123,
       escola: 1,
-      ano: '5'},
+      ano: '5'
+    },
     {
-      id: 8,
+      id: 2,
       emailAddress: 'superadmin@gmail.com',
       fullName: 'SUPER ADMIN TEST',
       password: await sails.helpers.passwords.hashPassword('superadmin'),
@@ -104,16 +59,16 @@ module.exports.bootstrap = async function(done) {
       role: 'superadmin',
     },
     {
-      id: 9,
+      id: 3,
       emailAddress: 'professor@gmail.com',
       fullName: 'PROFESSOR TEST',
       password: await sails.helpers.passwords.hashPassword('professor'),
       escola: 1,
-      ano: '3',
+      ano: '5',
       role: 'professor',
     },
     {
-      id: 10,
+      id: 4,
       emailAddress: 'diretor@gmail.com',
       fullName: 'DIRETOR TEST',
       password: await sails.helpers.passwords.hashPassword('diretor'),
@@ -123,15 +78,44 @@ module.exports.bootstrap = async function(done) {
     },
   ]);
 
+  var ALUNOS = [];
+  var ACCOUNT_ID = 5; // Da continuação numerica aos ID's para poder popular as pontuações corretamente
+  for(let k=1; k<=6; k++) { // Para cada colegio
+    for(let i=0; i<100 ;i++) { // Cria 100 alunos
+      ALUNOS.push({
+        id: ACCOUNT_ID++,
+        emailAddress: faker.internet.email().toLowerCase(),
+        fullName: faker.name.findName(),
+        password: ABC123,
+        escola: k,
+        ano: Math.floor(Math.random() * (7 - 4 + 1)) + 4, // Ano (inteiro) entre 4 e 7
+      });
+    }
+
+    ['professor', 'diretor'].forEach(ROLE => {
+      ALUNOS.push({
+        id: ACCOUNT_ID++,
+        emailAddress: faker.internet.email().toLowerCase(),
+        fullName: faker.name.findName(),
+        password: ABC123,
+        escola: k,
+        ano: Math.floor(Math.random() * (7 - 4 + 1)) + 4, // Ano (inteiro) entre 4 e 7
+        role: ROLE,
+      });
+    });
+  }
+
+  await Account.createEach(ALUNOS);
+  
   var q = [];
   for(let j=7; j<35; j++){ // Cria perguntas
     q.push({
-      Pergunta: 'Pergunta ' + j,
+      Pergunta: faker.lorem.sentence(),
       RespostaCorreta: '1',
       Alternativas: {
-        0: 'res1',
-        1: 'res2',
-        2: 'res3',
+        0: faker.lorem.words(),
+        1: faker.lorem.words(),
+        2: faker.lorem.words(),
       },
       id: j,
     });
