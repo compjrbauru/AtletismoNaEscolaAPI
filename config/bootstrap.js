@@ -15,10 +15,10 @@ module.exports.bootstrap = async function(done) {
   //
   // For example:
   // ```
-  // // Set up fake development data (or if we already have some, avast)
-  // if (await User.count() > 0) {
-  //   return done();
-  // }
+  // Set up fake development data (or if we already have some, avast)
+  if (await Account.count() > 0) {
+    return done();
+  }
   //
   // await User.createEach([
   //   { emailAddress: 'ry@example.com', fullName: 'Ryan Dahl', },
@@ -329,8 +329,8 @@ module.exports.bootstrap = async function(done) {
   for(let i=1; i<=numalunos; i++){
     let totalpontosaluno = 0;
     for(let j=1; j<=4; j++){ // Cria uma pontuacao de cada atividade para cada aluno
-      let pontosquiz = Math.floor(Math.random() * 90) + 30;
-      let pontosaula = Math.floor(Math.random() * 120) + 70;
+      let pontosquiz = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
+      let pontosaula = Math.floor(Math.random() * (10 - 2 + 1)) + 2;
       totalpontosaluno += pontosaula + pontosquiz;
       p.push({  
         pontuacaoQuiz: pontosquiz, // Valor random 
