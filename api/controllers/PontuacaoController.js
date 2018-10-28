@@ -41,7 +41,7 @@ module.exports = {
     pontuacaoQuiz: async function (req, res) {
         if (req.session.User === undefined)
             return res.badRequest('USUÁRIO NÃO RECONHECIDO');
-        console.log(req.body);
+
         const pontuacao = await Pontuacao.find({
             aluno: req.session.User.id,
             atividade: req.body.atividade,
@@ -58,6 +58,11 @@ module.exports = {
                 pontuacaoAula: 0,
             });
         }
+        var aluno = await Account.findOne({
+            id: req.session.User.id,
+        });
+        var newTotal = aluno.totalpontos + req.body.pontuacao;
+        await Account.update({id: req.session.User.id}).set({totalpontos: newTotal});
         return res.status(200).json('ok');
     },
 
