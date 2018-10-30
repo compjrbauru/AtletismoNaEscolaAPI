@@ -50,13 +50,22 @@ module.exports.datastores = {
     ***************************************************************************/
     // adapter: 'sails-mysql',
     // url: 'mysql://user:password@host:port/database',
-    mongodb: {
+    // mongodb: {
+    //   adapter: 'sails-mongo',
+    //   url: 'mongodb://root@localhost:27017',
+    //   //host: 'localhost',
+    //   //port: 27017,
+    //   database: 'FernandoAPI'
+    // },
+
+    mongodbProd: {
       adapter: 'sails-mongo',
-      url: 'mongodb://root@localhost:27017',
-      //host: 'localhost',
-      //port: 27017,
-      database: 'FernandoAPI'
-    },
+      host: 'ds155192.mlab.com',
+      port: 55192,
+      user: 'admin',
+      password: 'admin121212',
+      database: 'atletismonaescola',
+    }
 
   },
 

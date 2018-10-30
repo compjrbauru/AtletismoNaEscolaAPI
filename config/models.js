@@ -70,8 +70,8 @@ module.exports.models = {
   attributes: {
     createdAt: { type: 'number', autoCreatedAt: true, },
     updatedAt: { type: 'number', autoUpdatedAt: true, },
-    id: { type: 'number', autoIncrement: true, }, // Configuração scopo local
-    // id: { type: 'string', columnName: '_id', autoIncrement: true }, // Configuração mongodb
+    // id: { type: 'number', autoIncrement: true, }, // Configuração scopo local
+    id: { type: 'string', columnName: '_id', autoIncrement: true }, // Configuração mongodb
     //--------------------------------------------------------------------------
     //  /\   Using MongoDB?
     //  ||   Replace `id` above with this instead:
