@@ -36,7 +36,7 @@ module.exports.security = {
 
   cors: {
     allRoutes: true,
-    allowOrigins: ['http://localhost:4200'],
+    allowOrigins: ['http://localhost:4200', 'http://191.252.200.33'],
     allowCredentials: true,
   }
   /****************************************************************************

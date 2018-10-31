@@ -47,7 +47,8 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     default: {
-      adapter: 'sails-mongo',
+      adapter: require('sails-mongo'),
+      url:'mongodb://admin:gabriel18@ds155192.mlab.com:55192/atletismonaescola',
       // url: 'mysql://user:password@host:port/database',
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
@@ -79,7 +80,8 @@ module.exports = {
 
 
   models: {
-    connection: 'mongodbProd',
+    datastore: 'default',
+    migrate: 'safe',
     /***************************************************************************
     *                                                                          *
     * To help avoid accidents, Sails automatically sets the automigration      *
@@ -90,7 +92,6 @@ module.exports = {
     * https://sailsjs.com/docs/concepts/models-and-orm/model-settings#?migrate *
     *                                                                          *
     ***************************************************************************/
-    migrate: 'safe',
 
     /***************************************************************************
     *                                                                          *
@@ -252,6 +253,7 @@ module.exports = {
     ***************************************************************************/
     onlyAllowOrigins: [
       'https://www.atletismonaescola.com',
+      'http://191.252.200.33',
       // 'https://staging.example.com',
     ],
 

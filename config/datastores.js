@@ -57,16 +57,13 @@ module.exports.datastores = {
     //   //port: 27017,
     //   database: 'FernandoAPI'
     // },
-
-    mongodbProd: {
-      adapter: 'sails-mongo',
-      host: 'ds155192.mlab.com',
-      port: 55192,
-      user: 'admin',
-      password: 'admin121212',
-      database: 'atletismonaescola',
-    }
-
+    adapter: 'sails-mongo',
+    url: 'mongodb://admin:gabriel18@ds155192.mlab.com:55192/atletismonaescola',
+    // host: 'ds155192.mlab.com',
+    // port: 155192,
+    // user: 'admin',
+    // password: 'gabriel18',
+    // database: 'atletismonaescola',
   },
 
 
