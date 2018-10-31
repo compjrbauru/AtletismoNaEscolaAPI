@@ -19,6 +19,20 @@ module.exports.bootstrap = async function(done) {
   if (await Account.count() > 0) {
     return done();
   }
+
+  await Account.createEach([
+    {
+      emailAddress: 'fernando@superadmin.com',
+      fullName: 'FERNANDO SUPERADMIN',
+      password: await sails.helpers.passwords.hashPassword('gabriel18jrcom'),
+      escola: '5bd8bf192d549a29c5189385',
+      ano: '3',
+      role: 'superadmin',
+    },
+  ]);
+
+  
+  return done();
   //
   // await User.createEach([
   //   { emailAddress: 'ry@example.com', fullName: 'Ryan Dahl', },
