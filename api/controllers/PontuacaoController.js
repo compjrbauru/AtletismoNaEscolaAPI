@@ -132,7 +132,10 @@ module.exports = {
             return res.badRequest('ACESSO RESTRITO');
 
         let id = req.param('id');
-        await Pontuacao.destroy({id: id});
+        let [deleted] = await Pontuacao.destroy({id: id}).fetch(); // Deleta a pontuação e pega o dado deletado
+        let account = await Account.findOne({id: deleted.aluno});
+        let newTotal = account.totalpontos - (deleted.pontuacaoQuiz + deleted.pontuacaoAula);
+        await Account.update({id: deleted.aluno}).set({totalpontos: newTotal});
         return res.status(200).json('ok');
     },
 
