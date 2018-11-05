@@ -67,4 +67,5 @@ module.exports.routes = {
  'patch /account/:id': 'AccountController.patchAccount',
 
  'get /professores': 'AccountController.getProfessores',
+ 'get /alunos': 'AccountController.getAlunos',
 };

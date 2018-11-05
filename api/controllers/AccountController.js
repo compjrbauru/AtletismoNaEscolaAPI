@@ -41,6 +41,23 @@ module.exports = {
     return res.status(200).json(response);
   },
 
+  getAlunos: async function (req, res) {
+    let response;
+    if (req.session.User === undefined)
+      return res.badRequest('ACESSO RESTRITO');
+    else if (req.session.User.role === 'superadmin')
+      response = await Account.find({
+        role: 'aluno',
+      }).populate('escola');
+    else
+      response = await Account.find({
+        role: 'aluno',
+        escola: req.session.User.escola.id,
+      }).populate('escola');
+
+    return res.status(200).json(response);
+  },
+
   getAccount: async function (req, res) {
     let id = req.param('id');
     let response = (id) ? await Account.findOne({id: id}).populate('escola') : await Account.find().populate('escola');
