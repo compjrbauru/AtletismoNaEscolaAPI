@@ -49,7 +49,7 @@ module.exports = {
       response = await Account.find({
         role: 'aluno',
       }).populate('escola');
-    else if (req.session.User.role === 'diretor')
+    else
       response = await Account.find({
         role: 'aluno',
         escola: req.session.User.escola.id,
