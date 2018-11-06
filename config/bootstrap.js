@@ -240,6 +240,7 @@ module.exports.bootstrap = async function(done) {
   await Quiz.createEach([
     {
       questoes: [1, 2, 3, 4, 5, 6],
+      ordem: [6,5,4,3,2,1],
       conteudo: 1,
       ownerAtividade: 1,
       id: 1,
@@ -247,6 +248,7 @@ module.exports.bootstrap = async function(done) {
     },
     {
       questoes: [7, 8, 9, 10],
+      ordem: [7, 9, 8, 10],
       conteudo: 2,
       ownerAtividade: 2,
       id: 2,
@@ -254,6 +256,7 @@ module.exports.bootstrap = async function(done) {
     },
     {
       questoes: [11, 12, 13, 14],
+      ordem: [11, 13, 12, 14],
       conteudo: 3,
       ownerAtividade: 3,
       id: 3,
@@ -261,6 +264,7 @@ module.exports.bootstrap = async function(done) {
     },
     {
       questoes: [15, 16, 17, 18],
+      ordem: [15, 17, 16, 18],
       conteudo: 4,
       ownerAtividade: 4,
       id: 4,
@@ -268,21 +272,25 @@ module.exports.bootstrap = async function(done) {
     },
     {
       questoes: [19, 20],
+      ordem: [20, 19],
       id: 5,
       titulo: 'Quiz Corrida SEM CONTEUDO E ATIVIDADE 1 (TESTE)',
     },
     {
       questoes: [21, 22],
+      ordem: [22, 21],
       id: 6,
       titulo: 'Quiz Corrida SEM CONTEUDO E ATIVIDADE 2 (TESTE)',
     },
     {
       questoes: [23, 24],
+      ordem: [24, 23],
       id: 7,
       titulo: 'Quiz Corrida SEM CONTEUDO E ATIVIDADE 3 (TESTE)',
     },
     {
       questoes: [25, 26, 27, 28],
+      ordem: [25, 27, 26, 28],
       conteudo: 5,
       ownerAtividade: 5,
       id: 8,
