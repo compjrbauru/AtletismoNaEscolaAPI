@@ -23,7 +23,12 @@ module.exports = {
       type: 'string',
       required: true,
       unique: true,
-    }
+    },
+    ordem: {
+      type: 'json',
+      required: true,
+      columnType: 'array',
+    },
   },
 
 };
