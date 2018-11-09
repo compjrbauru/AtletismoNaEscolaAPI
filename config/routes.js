@@ -30,7 +30,7 @@ module.exports.routes = {
  'get /pontuacao-aluno': 'PontuacaoController.pontuacaoAluno',
  'get /pontuacao/:id?': 'PontuacaoController.getPontuacao',
  'patch /pontuacao/:id': 'PontuacaoController.patchPontuacao',
- 'delete /pontuacao/id': 'PontuacaoController.deletePontuacao',
+ 'delete /pontuacao/:id': 'PontuacaoController.deletePontuacao',
  'post /pontuacao-quiz': 'PontuacaoController.pontuacaoQuiz',
 
  'post /conteudo': 'ConteudoController.createConteudo',
@@ -67,4 +67,5 @@ module.exports.routes = {
  'patch /account/:id': 'AccountController.patchAccount',
 
  'get /professores': 'AccountController.getProfessores',
+ 'get /alunos': 'AccountController.getAlunos',
 };
