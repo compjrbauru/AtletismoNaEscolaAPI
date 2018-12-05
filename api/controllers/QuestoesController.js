@@ -40,6 +40,20 @@ module.exports = {
             return res.badRequest('ACESSO RESTRITO');
         
         let id = req.param('id');
+
+        let record = await Questoes.findOne({
+            id: id
+        }).populate('owner');
+        if (record.owner != null) { // Se tiver quiz associado a questao, deleta ele da ordem pra nao bugar para o aluno
+            const o_index = record.owner.ordem.indexOf(parseInt(id));
+            record.owner.ordem.splice(o_index, 1);
+    
+            let r = await Quiz.update({
+                id: record.owner.id
+            }).set({
+                ordem: record.owner.ordem,
+            });
+        }
         await Questoes.destroy({id: id});
         return res.status(200).json('ok');
     },
