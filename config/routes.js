@@ -66,6 +66,7 @@ module.exports.routes = {
  'delete /account/:id': 'AccountController.deleteAccount',
  'patch /account/:id': 'AccountController.patchAccount',
 
+ 'get /diretores': 'AccountController.getDiretores',
  'get /professores': 'AccountController.getProfessores',
  'get /alunos': 'AccountController.getAlunos',
 };
