@@ -43,17 +43,22 @@ module.exports = {
         let accounts = await Account.find({
             escola: id 
         }).populate('Pontuacoes');
-        await accounts.forEach(async account => {
+
+        async function asyncForEach(array, callback) {
+            for (let index = 0; index < array.length; index++) {
+              await callback(array[index], index, array);
+            }
+        }
+        
+        await asyncForEach(accounts, async account => {
             if (account.Pontuacoes) {
-                await account.Pontuacoes.forEach(async pontuacao => {
+                await asyncForEach(account.Pontuacoes, async pontuacao => {
                     await Pontuacao.destroy({id: pontuacao.id});
                 })
             }
-            console.log(await Account.find({
-                escola: account.id 
-            }).populate('Pontuacoes'));
             await Account.destroy({ id: account.id });
         });
+
         await Colegio.destroy({id: id});
         return res.status(200).json('ok');
     },

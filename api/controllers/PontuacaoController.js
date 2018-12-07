@@ -21,7 +21,7 @@ module.exports = {
         var aluno = await Account.findOne({
             id: req.body.aluno,
         });
-        var newTotal = aluno.totalpontos + req.body.pontuacaoAula;
+        var newTotal = aluno.totalpontos + req.body.pontuacao;
         await Pontuacao.create(req.body);
         await Account.update({id: req.body.aluno}).set({totalpontos: newTotal});
         
@@ -34,7 +34,7 @@ module.exports = {
 
         const pontuacoesAluno = await Pontuacao.find({
             aluno: req.session.User.id,
-        }).populate('atividade');
+        }).populate('atividade').populate('quiz');
         return res.status(200).json(pontuacoesAluno);
     },
 
@@ -42,22 +42,11 @@ module.exports = {
         if (req.session.User === undefined)
             return res.badRequest('USUÁRIO NÃO RECONHECIDO');
 
-        const pontuacao = await Pontuacao.find({
+        await Pontuacao.create({
             aluno: req.session.User.id,
-            atividade: req.body.atividade,
+            quiz: req.body.id,
+            pontuacao: req.body.pontuacao,
         });
-        if (pontuacao && pontuacao.length) {
-            await Pontuacao.update({id: pontuacao.id}).set({
-                pontuacaoQuiz: req.body.pontuacao
-            });
-        } else {
-            await Pontuacao.create({
-                aluno: req.session.User.id,
-                atividade: req.body.atividade,
-                pontuacaoQuiz: req.body.pontuacao,
-                pontuacaoAula: 0,
-            });
-        }
         var aluno = await Account.findOne({
             id: req.session.User.id,
         });
@@ -109,7 +98,7 @@ module.exports = {
 
     getPontuacao: async function (req, res) {
         let id = req.param('id');
-        let pontuacao = (id)? await Pontuacao.findOne({id: id}).populate('aluno').populate('atividade') :  await Pontuacao.find().populate('atividade').populate('aluno');
+        let pontuacao = (id)? await Pontuacao.findOne({id: id}).populate('aluno').populate('atividade').populate('quiz') :  await Pontuacao.find().populate('atividade').populate('aluno').populate('quiz');
         return res.status(200).json(pontuacao);
     },
 
@@ -120,7 +109,18 @@ module.exports = {
             return res.badRequest('ACESSO RESTRITO');
 
         let id = req.param('id');
+
+        let existing_pontuacao = await Pontuacao.findOne({id: id});
+        let old_pontuacao = existing_pontuacao.pontuacao;
+
+        var aluno = await Account.findOne({
+            id: req.body.aluno,
+        });
+
+        var newTotal = aluno.totalpontos + req.body.pontuacao - old_pontuacao;
+        await Account.update({id: req.body.aluno}).set({totalpontos: newTotal});
         await Pontuacao.update({id: id}).set(req.body);
+
         let pontuacao = await Pontuacao.findOne({id: id}).populate('aluno').populate('atividade');
         return res.status(200).json(pontuacao);
     },
@@ -134,7 +134,7 @@ module.exports = {
         let id = req.param('id');
         let [deleted] = await Pontuacao.destroy({id: id}).fetch(); // Deleta a pontuação e pega o dado deletado
         let account = await Account.findOne({id: deleted.aluno});
-        let newTotal = account.totalpontos - (deleted.pontuacaoQuiz + deleted.pontuacaoAula);
+        let newTotal = account.totalpontos - deleted.pontuacao;
         await Account.update({id: deleted.aluno}).set({totalpontos: newTotal});
         return res.status(200).json('ok');
     },
