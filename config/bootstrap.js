@@ -43,6 +43,11 @@ module.exports.bootstrap = async function(done) {
       nome: 'Colégio 3',
       endereco: 'rua 23',
     },
+    {
+      id: 4,
+      nome: 'Colégio Super Admin',
+      endereco: 'rua Super Admin',
+    },
   ])
   await Account.createEach([
     {
@@ -99,7 +104,7 @@ module.exports.bootstrap = async function(done) {
       emailAddress: 'superadmin@gmail.com',
       fullName: 'SUPER ADMIN TEST',
       password: await sails.helpers.passwords.hashPassword('superadmin'),
-      escola: 1,
+      escola: 4,
       ano: '3',
       role: 'superadmin',
     },
