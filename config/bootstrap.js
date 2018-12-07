@@ -242,7 +242,6 @@ module.exports.bootstrap = async function(done) {
       questoes: [1, 2, 3, 4, 5, 6],
       ordem: [6,5,4,3,2,1],
       conteudo: 1,
-      ownerAtividade: 1,
       id: 1,
       titulo: 'Quiz Corrida Rasa',
     },
@@ -250,7 +249,6 @@ module.exports.bootstrap = async function(done) {
       questoes: [7, 8, 9, 10],
       ordem: [7, 9, 8, 10],
       conteudo: 2,
-      ownerAtividade: 2,
       id: 2,
       titulo: 'Quiz Corrida Prolongada',
     },
@@ -258,7 +256,6 @@ module.exports.bootstrap = async function(done) {
       questoes: [11, 12, 13, 14],
       ordem: [11, 13, 12, 14],
       conteudo: 3,
-      ownerAtividade: 3,
       id: 3,
       titulo: 'Quiz Corrida Velocidade',
     },
@@ -266,7 +263,6 @@ module.exports.bootstrap = async function(done) {
       questoes: [15, 16, 17, 18],
       ordem: [15, 17, 16, 18],
       conteudo: 4,
-      ownerAtividade: 4,
       id: 4,
       titulo: 'Quiz Corrida Obstaculos',
     },
@@ -292,7 +288,6 @@ module.exports.bootstrap = async function(done) {
       questoes: [25, 26, 27, 28],
       ordem: [25, 27, 26, 28],
       conteudo: 5,
-      ownerAtividade: 5,
       id: 8,
       titulo: 'Quiz para atividade 5',
     },
@@ -302,32 +297,22 @@ module.exports.bootstrap = async function(done) {
     {
       id: 1,
       titulo: 'Atividade Corrida Rasa',
-      quiz: 1,
-      provaPratica: 'Prova prática 1',
     },
     {
       id: 2,
       titulo: 'Atividade Corrida Rasa Prolongada',
-      quiz: 2,
-      provaPratica: 'Prova prática 2',
     },
     {
       id: 3,
       titulo: 'Atividade 3',
-      quiz: 3,
-      provaPratica: 'Prova prática 3',
     },
     {
       id: 4,
       titulo: 'Atividade 4',
-      quiz: 4,
-      provaPratica: 'Prova prática 4',
     },
     {
       id: 5,
       titulo: 'Atividade 5 - Sem Pontuacoes (TESTE)',
-      quiz: 8,
-      provaPratica: 'Prova prática 5',
     },
   ]);
 
@@ -335,18 +320,25 @@ module.exports.bootstrap = async function(done) {
   let p = [];
   let numalunos = await Account.count();
   for(let i=1; i<=numalunos; i++){
-    let totalpontosaluno = 0;
+    let pontosquiz = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
+    let totalpontosaluno = pontosquiz;
+
+    p.push({ // Cria uma pontuacao de quiz para cada aluno
+      pontuacao: pontosquiz,
+      aluno: i,
+      quiz: 1,
+    });
+
     for(let j=1; j<=4; j++){ // Cria uma pontuacao de cada atividade para cada aluno
-      let pontosquiz = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
-      let pontosaula = Math.floor(Math.random() * (10 - 2 + 1)) + 2;
-      totalpontosaluno += pontosaula + pontosquiz;
+      let pontos = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
+      totalpontosaluno += pontos;
       p.push({  
-        pontuacaoQuiz: pontosquiz, // Valor random 
-        pontuacaoAula: pontosaula,
+        pontuacao: pontos, // Valor random 
         aluno: i,
         atividade: j,
       });
     }
+
     await Account.update({id: i}).set({totalpontos: totalpontosaluno});
   }
 
