@@ -22,6 +22,9 @@ module.exports = {
             response = await Colegio.findOne({id: id});
         else
             response = await Colegio.find();
+        
+        response = response.filter( colegio => !(colegio.id === req.session.User.escola.id));
+        
         return res.status(200).json(response);
     },
 
