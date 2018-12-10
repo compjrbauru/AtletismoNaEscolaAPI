@@ -34,7 +34,7 @@ module.exports = {
         
         let id = req.param('id');
         await Quiz.update({id: id}).set(req.body);
-        let record = await Quiz.findOne({id: id}).populate('conteudo').populate('questoes').populate('ownerAtividade');
+        let record = await Quiz.findOne({id: id}).populate('conteudo').populate('questoes');
         return res.status(200).json(record);
     },
 
@@ -54,10 +54,10 @@ module.exports = {
         return res.status(200).json('ok');
     },
     QuizesLivresAtividade: async function (inputs, res) { // Retorna todos os quizes que nao tem atividade associado
-        let quizes = await Quiz.find().populate('ownerAtividade');
+        let quizes = await Quiz.find();
         let livres = [];
         quizes.forEach(quiz => {
-            if (!quiz.ownerAtividade)
+            if (!quiz.conteudo)
                 livres.push(quiz);
         });
         return res.json(livres);
@@ -66,12 +66,20 @@ module.exports = {
         let pontuacoesAluno = await Pontuacao.find({
           aluno: req.session.User.id,
         });
-        let quizes = await Quiz.find().populate('conteudo').populate('ownerAtividade').populate('questoes');
+
+        pontuacoesAluno = pontuacoesAluno.filter(pont => {
+            return pont.quiz != null;
+        });
+
+        let quizes = await Quiz.find().populate('conteudo').populate('questoes');
+        quizes = quizes.filter(quiz => quiz.conteudo.length > 0);
+
         let filtredQuizes = quizes.filter(quiz => {
             return !pontuacoesAluno.map(pontuacoes => {
-                return (quiz.ownerAtividade !== null && quiz.ownerAtividade.id === pontuacoes.atividade && pontuacoes && pontuacoes.pontuacaoQuiz !== 0);
-            }).some(pontuacao => pontuacao === true) && quiz.ownerAtividade !== null;
+                return (quiz.id === pontuacoes.quiz);
+            }).some(pontuacao => pontuacao === true);
         });
+
         return res.json(filtredQuizes);
     }
 };

@@ -8,11 +8,7 @@
 module.exports = {
 
   attributes: {
-    pontuacaoQuiz: {
-      type: 'number',
-      defaultsTo: 0
-    },
-    pontuacaoAula: {
+    pontuacao: {
       type: 'number',
       defaultsTo: 0
     },
@@ -22,7 +18,9 @@ module.exports = {
     },
     atividade: {
       model: 'Atividade',
-      required: true,
+    },
+    quiz: {
+      model: 'Quiz',
     },
   }
 

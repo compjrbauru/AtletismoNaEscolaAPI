@@ -41,6 +41,23 @@ module.exports = {
     return res.status(200).json(response);
   },
 
+  getDiretores: async function (req, res) { // Retorna todos os Diretor para superadmin
+    let response;
+    if (req.session.User === undefined || req.session.User.role in ['aluno', 'professor', 'diretor'])
+      return res.badRequest('ACESSO RESTRITO');
+    else if (req.session.User.role === 'superadmin')
+      response = await Account.find({
+        role: 'diretor',
+      }).populate('escola');
+    else if (req.session.User.role === 'diretor')
+      response = await Account.find({
+        role: 'diretor',
+        escola: req.session.User.escola.id,
+      }).populate('escola');
+
+    return res.status(200).json(response);
+  },
+
   getAlunos: async function (req, res) {
     let response;
     if (req.session.User === undefined)
