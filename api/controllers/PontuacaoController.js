@@ -22,7 +22,7 @@ module.exports = {
             id: req.body.aluno,
         });
         var newTotal = aluno.totalpontos + req.body.pontuacao;
-        await Pontuacao.create(req.body);
+        await Pontuacao.create({...req.body});
         await Account.update({id: req.body.aluno}).set({totalpontos: newTotal});
         
         return res.status(200).json('ok');
