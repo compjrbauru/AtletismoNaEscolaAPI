@@ -69,4 +69,8 @@ module.exports.routes = {
  'get /diretores': 'AccountController.getDiretores',
  'get /professores': 'AccountController.getProfessores',
  'get /alunos': 'AccountController.getAlunos',
+
+ 'get /tutorial': 'TutorialController.getTutorial',
+ 'patch /tutorial': 'TutorialController.editTutorial',
+ 'delete /tutorial': 'TutorialController.deleteTutorial',
 };
