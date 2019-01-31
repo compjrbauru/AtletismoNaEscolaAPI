@@ -72,4 +72,5 @@ module.exports.routes = {
 
  'get /tutorial': 'TutorialController.getTutorial',
  'patch /tutorial': 'TutorialController.editTutorial',
+ 'delete /tutorial': 'TutorialController.deleteTutorial',
 };

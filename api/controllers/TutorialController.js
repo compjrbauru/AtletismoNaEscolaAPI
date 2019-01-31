@@ -36,5 +36,16 @@ module.exports = {
         return res.status(200).json('ok');
     },
 
+    deleteTutorial: async function (req, res) {
+        if (req.session.User === undefined)
+            return res.badRequest('USUÁRIO NÃO RECONHECIDO');
+        else if (req.session.User.role !== 'superadmin')
+            return res.badRequest('ACESSO RESTRITO');
+
+        // Deleta tudo
+        await Tutorial.destroy({});
+        return res.status(200).json('ok');
+    },
+
 };
 
