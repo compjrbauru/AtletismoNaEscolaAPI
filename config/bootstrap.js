@@ -118,7 +118,7 @@ module.exports.bootstrap = async function(done) {
       fullName: 'PROFESSOR TEST',
       password: await sails.helpers.passwords.hashPassword('professor'),
       escola: 1,
-      ano: '3',
+      ano: '5',
       role: 'professor',
     },
     {
