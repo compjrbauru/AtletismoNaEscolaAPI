@@ -22,7 +22,7 @@ module.exports = {
             id: req.body.aluno,
         });
         var newTotal = aluno.totalpontos + req.body.pontuacao;
-        await Pontuacao.create(req.body);
+        await Pontuacao.create({...req.body});
         await Account.update({id: req.body.aluno}).set({totalpontos: newTotal});
         
         return res.status(200).json('ok');
@@ -121,7 +121,7 @@ module.exports = {
         await Account.update({id: req.body.aluno}).set({totalpontos: newTotal});
         await Pontuacao.update({id: id}).set(req.body);
 
-        let pontuacao = await Pontuacao.findOne({id: id}).populate('aluno').populate('atividade');
+        let pontuacao = await Pontuacao.findOne({id: id}).populate('aluno').populate('atividade').populate('quiz');
         return res.status(200).json(pontuacao);
     },
 
