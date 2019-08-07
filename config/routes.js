@@ -70,7 +70,7 @@ module.exports.routes = {
  'get /professores': 'AccountController.getProfessores',
  'get /alunos': 'AccountController.getAlunos',
 
- 'get /tutorial': 'TutorialController.getTutorial',
- 'patch /tutorial': 'TutorialController.editTutorial',
- 'delete /tutorial': 'TutorialController.deleteTutorial',
+ 'get /tutorial/:nome': 'TutorialController.getTutorial',
+ 'patch /tutorial/:nome': 'TutorialController.editTutorial',
+ 'delete /tutorial/:nome': 'TutorialController.deleteTutorial',
 };
